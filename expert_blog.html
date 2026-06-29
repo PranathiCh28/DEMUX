@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expert Blogs - AgriConnect</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    .navbar {
+      background: #2e7d32;
+      padding: 12px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+
+    textarea, input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #1b5e20;
+    }
+
+    .blog-list {
+      margin-top: 30px;
+    }
+
+    .blog-card {
+      background: #fafafa;
+      padding: 15px;
+      border-left: 5px solid #2e7d32;
+      margin-bottom: 15px;
+      border-radius: 5px;
+    }
+
+    .blog-card h3 {
+      margin: 0 0 10px;
+      color: #333;
+    }
+
+    .blog-card p {
+      margin: 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">🌱 AgriConnect</div>
+    <a href="index.html">Home</a>
+  </div>
+
+  <div class="container">
+    <h2>✍️ Write a New Blog</h2>
+    <form id="blogForm">
+      <input type="text" id="title" placeholder="Blog Title" required>
+      <textarea id="content" rows="5" placeholder="Write your blog here..." required></textarea>
+      <button type="submit">Publish Blog</button>
+    </form>
+
+    <div class="blog-list" id="blogList">
+      <h2>📖 Your Blogs</h2>
+      <!-- Blogs will appear here -->
+    </div>
+  </div>
+
+  <script>
+    const blogForm = document.getElementById("blogForm");
+    const blogList = document.getElementById("blogList");
+
+    blogForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const title = document.getElementById("title").value;
+      const content = document.getElementById("content").value;
+
+      const blogCard = document.createElement("div");
+      blogCard.classList.add("blog-card");
+      blogCard.innerHTML = `<h3>${title}</h3><p>${content}</p>`;
+
+      blogList.appendChild(blogCard);
+
+      blogForm.reset();
+    });
+  </script>
+</body>
+</html>

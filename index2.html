@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriConnect</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Navbar styling */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #2e7d32;
+      padding: 10px 20px;
+      color: white;
+    }
+
+    .navbar .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .navbar ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .navbar ul li {
+      position: relative; /* important for dropdown */
+      margin-left: 20px;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 8px;
+      display: block;
+    }
+
+    .navbar ul li a:hover {
+      background-color: #1b5e20;
+      border-radius: 5px;
+    }
+
+    /* Dropdown menu */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 1);
+      min-width: 150px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: #2e7d32;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #00ffe1ff;
+    }
+
+    /* Show dropdown on hover */
+    .navbar ul li:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Hero image */
+    .hero {
+      width: 100%;
+      height: 25vh;
+      background: url('https://images.unsplash.com/photo-1592398748464-2d7dcd5c5e3b?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+    }
+
+    /* Services section */
+    .services {
+      padding: 30px;
+      text-align: center;
+    }
+
+    .services h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #2e7d32;
+    }
+
+    .services ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .services ul li {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    /* Greeting */
+    .greeting {
+      padding: 20px;
+      font-size: 18px;
+      color: #2e7d32;
+    }
+
+    /* Google translate box align center above services */
+    #translateWrap { text-align:center; margin:18px 0; }
+    .services h2, 
+    #translateWrap h2 { 
+    color:#2e7d32; 
+    font-size:24px;  /* same as browser default h2, can adjust */
+    margin-bottom:6px;
+    }
+    #translateWrap p { font-weight:bold; font-size:18px; margin-bottom:6px; }
+    .services { margin-top:6px; text-align:center; }
+    .services h2 { color:#2e7d32; }
+    .services ul { list-style:none; padding:0; font-size:18px; line-height:2; }
+    /* small note box for errors */
+    #translateError { color:red; font-weight:600; display:none; margin-top:8px; }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">🌱 AgriConnect</div>
+<ul>
+  <?php if($role == 'guest'): ?>
+    <li><a href="login.php">Login / Sign Up</a></li>
+
+  <?php elseif($role == 'farmer' || $role == 'consumer'): ?>
+    <li><a href="ask.html">Ask Question</a></li>
+    <li><a href="qna.php">View QnA</a></li>
+    <li><a href="logout.php">Logout</a></li>
+
+  <?php elseif($role == 'expert'): ?>
+    <li><a href="qna.php">Answer Questions</a></li>
+    <li><a href="videos.php">Upload Videos</a></li>
+    <li><a href="logout.php">Logout</a></li>
+
+  <?php elseif($role == 'admin'): ?>
+    <li><a href="../admin/dashboard.php">Dashboard</a></li>
+    <li><a href="logout.php">Logout</a></li>
+  <?php endif; ?>
+
+  <li>
+    <a href="#">Resources ▼</a>
+    <div class="dropdown-content">
+      <a href="videos.html">Videos</a>
+      <a href="blogs.html">Posts</a>
+    </div>
+  </li>
+  <li><a href="#">Contact Us</a></li>
+  <li><a href="#">About Us</a></li>
+  <li><a href="#">Store</a></li>
+</ul>
+
+  </div>
+
+  <!-- Greeting -->
+  <?php if($role != 'guest'): ?>
+    <div class="greeting">Hello, <?= htmlspecialchars($username) ?>!</div>
+  <?php endif; ?>
+
+  <!-- Hero Image -->
+  <div class="hero"></div>
+
+<!-- Translate widget wrapper (placed above Services) -->
+  <div id="translateWrap">
+    <h2>Select your language</h2>
+    <div id="google_translate_element"></div>
+    <div id="translateError">
+      Unable to load translator. Make sure you're online, not using an ad-blocker, 
+      and opened this page over HTTP (not file://).
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <div class="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>🌾 Expert Q & A</li>
+      <li>🎥 Expert Vlogs</li>
+      <li>☁ Weather Report</li>
+      <li>📊 Mandi Rates</li>
+      <li>🏛 Government Schemes in India</li>
+    </ul>
+  </div>
+
+<!-- GOOGLE TRANSLATE: using explicit https to reduce protocol ambiguity -->
+  <script>
+    function googleTranslateElementInit() {
+      try {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'hi,bn,te,ta,kn,ml,or,gu,pa,as,mr,ur,sd,ne,mai,mni,brx,kok,sa',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+        document.getElementById('translateError').style.display = 'none';
+      } catch (e) {
+        console.error('Translate init failed:', e);
+        document.getElementById('translateError').style.display = 'block';
+      }
+    }
+
+    var translateScriptLoaded = false;
+    function showTranslateErrorIfNotLoaded(){
+      if (!translateScriptLoaded) {
+        document.getElementById('translateError').style.display = 'block';
+      }
+    }
+
+    (function insertGoogleScript(){
+      var s = document.createElement('script');
+      s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      s.onload = function(){ translateScriptLoaded = true; };
+      s.onerror = function(){
+        console.error('Could not load Google Translate script (probably blocked)');
+        translateScriptLoaded = false;
+        setTimeout(showTranslateErrorIfNotLoaded, 500);
+      };
+      document.head.appendChild(s);
+      setTimeout(showTranslateErrorIfNotLoaded, 2000);
+    })();
+  </script>
+
+</body>
+</html>

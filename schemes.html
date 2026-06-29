@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AgriConnect – Farmer Schemes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background: #2e7d32;
+      color: white;
+      padding: 16px 20px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    /* 🔍 Search box */
+    #searchBox {
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      font-size: 16px;
+      border: 2px solid #2e7d32;
+      border-radius: 8px;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    #searchBox:focus {
+      border-color: #1b5e20;
+      box-shadow: 0 0 6px rgba(46,125,50,0.4);
+    }
+
+    .scheme {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .scheme:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .scheme h3 {
+      margin-top: 0;
+      color: #2e7d32;
+      font-size: 20px;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 8px;
+    }
+
+    .scheme p {
+      margin: 10px 0 15px 0;
+      line-height: 1.6;
+    }
+
+    strong {
+      color: #1b5e20;
+    }
+
+    ul {
+      margin: 8px 0 16px 20px;
+      padding: 0;
+    }
+
+    ul li {
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    footer {
+      background: #2e7d32;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header { font-size: 18px; padding: 12px; }
+      .scheme { padding: 16px; }
+      .scheme h3 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header>🌱 Government Schemes for Farmers</header>
+
+  <div class="container">
+    <!-- 🔍 Search input -->
+    <input type="text" id="searchBox" placeholder="Search schemes (e.g. insurance, loan, pension)..." />
+
+    <div class="schemes-container">
+      <!-- Schemes will load here dynamically -->
+    </div>
+  </div>
+
+  <footer>
+    AgriConnect © 2025 | Empowering Farmers with Knowledge
+  </footer>
+
+  <script>
+    let schemesData = [];
+
+    // Load schemes.json
+    fetch('schemes.json')
+      .then(response => response.json())
+      .then(data => {
+        schemesData = data;
+        displaySchemes(data);
+      })
+      .catch(err => {
+        document.querySelector('.schemes-container').innerHTML = 
+          "<p style='color:red;'>⚠️ Could not load schemes. Please check if schemes.json exists.</p>";
+        console.error(err);
+      });
+
+    // Function to display schemes
+    function displaySchemes(data) {
+      const container = document.querySelector('.schemes-container');
+      container.innerHTML = '';
+      if (data.length === 0) {
+        container.innerHTML = "<p style='color:#999;'>No schemes found matching your search.</p>";
+        return;
+      }
+      data.forEach(scheme => {
+        const div = document.createElement('div');
+        div.className = 'scheme';
+        div.innerHTML = `
+          <h3>${scheme.name}</h3>
+          <p>${scheme.description}</p>
+          <strong>Eligibility:</strong>
+          <ul>${scheme.eligibility.map(e => `<li>${e}</li>`).join('')}</ul>
+          <strong>Benefits:</strong>
+          <ul>${scheme.benefits.map(b => `<li>${b}</li>`).join('')}</ul>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // 🔍 Filter schemes as user types
+    document.getElementById('searchBox').addEventListener('input', function() {
+      const query = this.value.toLowerCase();
+      const filtered = schemesData.filter(scheme =>
+        scheme.name.toLowerCase().includes(query) ||
+        scheme.description.toLowerCase().includes(query) ||
+        scheme.eligibility.some(e => e.toLowerCase().includes(query)) ||
+        scheme.benefits.some(b => b.toLowerCase().includes(query))
+      );
+      displaySchemes(filtered);
+    });
+  </script>
+</body>
+</html>

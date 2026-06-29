@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - AgriConnect</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .navbar {
+      background-color: #2e7d32;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .container {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .login-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      padding: 20px;
+      width: 220px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      color: #2e7d32;
+    }
+
+    .card input {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .card button {
+      width: 100%;
+      padding: 10px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .card button:hover {
+      background: #1b5e20;
+    }
+
+    .signup {
+      margin-top: 30px;
+      font-size: 16px;
+    }
+
+    .signup a {
+      color: #2e7d32;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .signup a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">🌱 AgriConnect</div>
+    <a href="index.html">Home</a>
+  </div>
+
+  <!-- Login Container -->
+  <div class="container">
+    <h2>Select Your Login</h2>
+
+    <!-- Row of login modules -->
+    <div class="login-row">
+      <!-- Farmer Login -->
+      <div class="card">
+        <h3>Farmer Login</h3>
+        <input type="text" placeholder="Mobile number">
+        <input type="password" placeholder="Password">
+        <button>Login</button>
+      </div>
+
+      <!-- Admin Login -->
+      <div class="card">
+        <h3>Admin Login</h3>
+        <input type="text" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button>Login</button>
+      </div>
+
+      <!-- Expert Login -->
+      <div class="card">
+        <h3>Expert Login</h3>
+        <input type="text" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button>Login</button>
+      </div>
+
+      <!-- Consumer Login -->
+      <div class="card">
+        <h3>Consumer Login</h3>
+        <input type="text" placeholder="Mobile number">
+        <input type="password" placeholder="Password">
+        <button>Login</button>
+      </div>
+    </div>
+
+    <!-- Signup Section -->
+    <div class="signup">
+      <p>Don’t have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AgriConnect - Login</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #2e7d32, #66bb6a);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      color: #2e7d32;
+    }
+    .container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 900px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      user-select: none;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 2.5rem;
+    }
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .login-box {
+      border: 2px solid #a5d6a7;
+      padding: 25px 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(46,125,50,0.15);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      background: #f9fff9;
+      display: flex;
+      flex-direction: column;
+    }
+    .login-box:hover,
+    .login-box:focus-within {
+      border-color: #2e7d32;
+      box-shadow: 0 6px 15px rgba(46,125,50,0.3);
+    }
+    .login-box h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-align: center;
+      color: #2e7d32;
+      user-select: text;
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 18px;
+    }
+    .input-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      color: #2e7d32;
+      user-select: text;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1.8px solid #a5d6a7;
+      transition: border-color 0.3s ease;
+    }
+    .input-group input:focus {
+      outline: none;
+      border-color: #2e7d32;
+      box-shadow: 0 0 6px #66bb6aaa;
+    }
+    .input-group .icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.3rem;
+      color: #2e7d32;
+      pointer-events: none;
+      user-select: none;
+    }
+    button {
+      margin-top: auto;
+      padding: 14px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    button:disabled {
+      background-color: #a5d6a7;
+      cursor: not-allowed;
+    }
+    button:hover:not(:disabled) {
+      background-color: #1b5e20;
+    }
+    .error-message {
+      color: #d32f2f;
+      font-size: 0.9rem;
+      margin-top: -12px;
+      margin-bottom: 12px;
+      display: none;
+      user-select: text;
+    }
+    /* Tooltip */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: help;
+      border-bottom: 1px dotted #2e7d32;
+    }
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 180px;
+      background-color: #2e7d32;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -90px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+    .tooltip:hover .tooltiptext,
+    .tooltip:focus-within .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+    /* Responsive */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .login-box {
+        padding: 20px 15px 25px;
+      }
+      .input-group input {
+        padding-right: 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container" role="main" aria-label="Login Portal">
+    <h1>Login Portal</h1>
+    <section class="modules" aria-label="Login modules for different user types">
+
+      <!-- Farmer Login -->
+      <article class="login-box" tabindex="0" aria-labelledby="farmer-login-title" role="form" aria-describedby="farmer-login-desc">
+        <h2 id="farmer-login-title">Farmer Login <span class="tooltip" tabindex="0" aria-label="Tooltip: For farmers to access their accounts.">❓
+          <span class="tooltiptext">For farmers to access their accounts and services.</span>
+        </span></h2>
+        <p id="farmer-login-desc" class="sr-only">Enter your Farmer ID and password to login.</p>
+        <div class="input-group">
+          <label for="farmer-id">Farmer ID</label>
+          <input type="text" id="farmer-id" name="farmer-id" placeholder="Enter Farmer ID" autocomplete="username" aria-required="true" />
+          <span class="icon" aria-hidden="true">👨‍🌾</span>
+          <div class="error-message" id="farmer-id-error">Please enter your Farmer ID.</div>
+        </div>
+        <div class="input-group">
+          <label for="farmer-password">Password</label>
+          <input type="password" id="farmer-password" name="farmer-password" placeholder="Enter Password" autocomplete="current-password" aria-required="true" />
+          <span class="icon" aria-hidden="true">🔒</span>
+          <div class="error-message" id="farmer-password-error">Please enter your password.</div>
+        </div>
+        <button type="button" id="farmer-login-btn" disabled>Login</button>
+      </article>
+
+      <!-- Admin Login -->
+      <article class="login-box" tabindex="0" aria-labelledby="admin-login-title" role="form" aria-describedby="admin-login-desc">
+        <h2 id="admin-login-title">Admin Login <span class="tooltip" tabindex="0" aria-label="Tooltip: For administrators to manage the platform.">❓
+          <span class="tooltiptext">For administrators to manage the platform.</span>
+        </span></h2>
+        <p id="admin-login-desc" class="sr-only">Enter your Admin ID and password to login.</p>
+        <div class="input-group">
+          <label for="admin-id">Admin ID</label>
+          <input type="text" id="admin-id" name="admin-id" placeholder="Enter Admin ID" autocomplete="username" aria-required="true" />
+          <span class="icon" aria-hidden="true">🛠</span>
+          <div class="error-message" id="admin-id-error">Please enter your Admin ID.</div>
+        </div>
+        <div class="input-group">
+          <label for="admin-password">Password</label>
+          <input type="password" id="admin-password" name="admin-password" placeholder="Enter Password" autocomplete="current-password" aria-required="true" />
+          <span class="icon" aria-hidden="true">🔒</span>
+          <div class="error-message" id="admin-password-error">Please enter your password.</div>
+        </div>
+        <button type="button" id="admin-login-btn" disabled>Login</button>
+      </article>
+
+      <!-- Expert Login -->
+      <article class="login-box" tabindex="0" aria-labelledby="expert-login-title" role="form" aria-describedby="expert-login-desc">
+        <h2 id="expert-login-title">Expert Login <span class="tooltip" tabindex="0" aria-label="Tooltip: For agricultural experts to provide advice.">❓
+          <span class="tooltiptext">For agricultural experts to provide advice and content.</span>
+        </span></h2>
+        <p id="expert-login-desc" class="sr-only">Enter your Expert ID and password to login.</p>
+        <div class="input-group">
+          <label for="expert-id">Expert ID</label>
+          <input type="text" id="expert-id" name="expert-id" placeholder="Enter Expert ID" autocomplete="username" aria-required="true" />
+          <span class="icon" aria-hidden="true">👩‍🔬</span>
+          <div class="error-message" id="expert-id-error">Please enter your Expert ID.</div>
+        </div>
+        <div class="input-group">
+          <label for="expert-password">Password</label>
+          <input type="password" id="expert-password" name="expert-password" placeholder="Enter Password" autocomplete="current-password" aria-required="true" />
+          <span class="icon" aria-hidden="true">🔒</span>
+          <div class="error-message" id="expert-password-error">Please enter your password.</div>
+        </div>
+        <button type="button" id="expert-login-btn" disabled>Login</button>
+      </article>
+
+      <!-- Consumer Login -->
+      <article class="login-box" tabindex="0" aria-labelledby="consumer-login-title" role="form" aria-describedby="consumer-login-desc">
+        <h2 id="consumer-login-title">Consumer Login <span class="tooltip" tabindex="0" aria-label="Tooltip: For consumers to access marketplace and info.">❓
+          <span class="tooltiptext">For consumers to access marketplace and information.</span>
+        </span></h2>
+        <p id="consumer-login-desc" class="sr-only">Enter your Consumer ID and password to login.</p>
+        <div class="input-group">
+          <label for="consumer-id">Consumer ID</label>
+          <input type="text" id="consumer-id" name="consumer-id" placeholder="Enter Consumer ID" autocomplete="username" aria-required="true" />
+          <span class="icon" aria-hidden="true">🛒</span>
+          <div class="error-message" id="consumer-id-error">Please enter your Consumer ID.</div>
+        </div>
+        <div class="input-group">
+          <label for="consumer-password">Password</label>
+          <input type="password" id="consumer-password" name="consumer-password" placeholder="Enter Password" autocomplete="current-password" aria-required="true" />
+          <span class="icon" aria-hidden="true">🔒</span>
+          <div class="error-message" id="consumer-password-error">Please enter your password.</div>
+        </div>
+        <button type="button" id="consumer-login-btn" disabled>Login</button>
+      </article>
+
+    </section>
+  </main>
+
+  <script>
+    // Utility function to check if input is empty
+    function isEmpty(value) {
+      return !value || value.trim() === '';
+    }
+
+    // Setup validation and button enabling for each login box
+    function setupLoginValidation(prefix) {
+      const idInput = document.getElementById(prefix + '-id');
+      const passwordInput = document.getElementById(prefix + '-password');
+      const loginBtn = document.getElementById(prefix + '-login-btn');
+      const idError = document.getElementById(prefix + '-id-error');
+      const passwordError = document.getElementById(prefix + '-password-error');
+
+      function validate() {
+        let valid = true;
+
+        if (isEmpty(idInput.value)) {
+          idError.style.display = 'block';
+          valid = false;
+        } else {
+          idError.style.display = 'none';
+        }
+
+        if (isEmpty(passwordInput.value)) {
+          passwordError.style.display = 'block';
+          valid = false;
+        } else {
+          passwordError.style.display = 'none';
+        }
+
+        loginBtn.disabled = !valid;
+      }
+
+      idInput.addEventListener('input', validate);
+      passwordInput.addEventListener('input', validate);
+
+      loginBtn.addEventListener('click', () => {
+        // For demo: just alert and clear inputs
+        alert(${prefix.charAt(0).toUpperCase() + prefix.slice(1)} login successful!);
+        idInput.value = '';
+        passwordInput.value = '';
+        loginBtn.disabled = true;
+      });
+    }
+
+    // Initialize all login forms
+    ['farmer', 'admin', 'expert', 'consumer'].forEach(setupLoginValidation);
+  </script>
+
+</body>
+</html>

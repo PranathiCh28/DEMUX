@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - AgriConnect</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .navbar {
+      background-color: #2e7d32;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .container {
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 350px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .container h2 {
+      margin-bottom: 20px;
+      color: #2e7d32;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #1b5e20;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">🌱 AgriConnect</div>
+    <a href="index.html">Home</a>
+  </div>
+
+  <!-- Signup Form -->
+  <div class="container">
+    <h2>Create Your Account</h2>
+    <form id="signupForm">
+      <!-- Role Selection (Admin excluded) -->
+      <select id="role" required>
+        <option value="">-- Select Role --</option>
+        <option value="Farmer">Farmer</option>
+        <option value="Expert">Expert</option>
+        <option value="Consumer">Consumer</option>
+      </select>
+
+      <!-- Dynamic input (Email/Mobile) -->
+      <div id="contactField">
+        <input type="text" id="contact" placeholder="Enter Email / Mobile" required>
+      </div>
+
+      <!-- Password -->
+      <input type="password" id="password" placeholder="Enter Password" required>
+
+      <!-- Re-enter Password -->
+      <input type="password" id="repassword" placeholder="Re-enter Password" required>
+
+      <button type="submit">Sign Up</button>
+
+      <!-- Message Display -->
+      <
