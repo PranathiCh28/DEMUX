@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farmer Dashboard - AgriConnect</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:#eef7ee}
+header{background:#2e7d32;color:#fff;padding:16px 30px;display:flex;justify-content:space-between;align-items:center}
+header h1{font-size:28px}
+nav a{color:#fff;text-decoration:none;margin-left:18px;font-weight:600}
+.container{max-width:1000px;margin:30px auto;padding:20px}
+.welcome{background:#fff;border-radius:15px;padding:25px;box-shadow:0 4px 12px rgba(0,0,0,.1);margin-bottom:25px}
+.weather{background:linear-gradient(135deg,#43a047,#81c784);color:#fff;border-radius:15px;padding:25px;box-shadow:0 4px 12px rgba(0,0,0,.15);margin-bottom:30px}
+.weather h2{margin-bottom:10px}
+.services h2{color:#2e7d32;margin-bottom:20px}
+.service-list{display:flex;flex-direction:column;gap:18px}
+.service-btn{
+display:block;
+background:#fff;
+border:2px solid #a5d6a7;
+padding:18px 22px;
+border-radius:12px;
+text-decoration:none;
+color:#2e7d32;
+font-size:20px;
+font-weight:700;
+transition:.3s;
+box-shadow:0 3px 8px rgba(0,0,0,.08)
+}
+.service-btn:hover{
+background:#2e7d32;
+color:#fff;
+transform:translateX(8px)
+}
+.updates{
+margin-top:35px;
+background:#fff;
+padding:20px;
+border-radius:15px;
+box-shadow:0 4px 12px rgba(0,0,0,.1)
+}
+.updates h2{color:#2e7d32;margin-bottom:12px}
+.updates ul{padding-left:20px;line-height:2}
+footer{
+margin-top:35px;
+background:#2e7d32;
+color:#fff;
+text-align:center;
+padding:15px
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🌱 AgriConnect</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="#">Profile</a>
+<a href="application.html">Logout</a>
+</nav>
+</header>
+
+<div class="container">
+
+<div class="welcome">
+<h2>👨‍🌾 Welcome Farmer!</h2>
+<p>Access all farming services from one place.</p>
+</div>
+
+<div class="weather">
+<h2>🌤 Weather Report</h2>
+<p><strong>Location:</strong> Current Location</p>
+<p><strong>Temperature:</strong> -- °C</p>
+<p><strong>Humidity:</strong> -- %</p>
+<p><strong>Condition:</strong> Sunny / Cloudy</p>
+<p style="margin-top:10px;font-size:14px;">(Later connect this section to a Weather API.)</p>
+</div>
+
+<div class="services">
+<h2>Farmer Services</h2>
+
+<div class="service-list">
+
+<a href="blogs.html" class="service-btn">📖 Expert Blogs</a>
+
+<a href="video.html" class="service-btn">🎥 Expert Videos</a>
+
+<a href="Untitled-1.html" class="service-btn">🌾 Government Schemes</a>
+
+<a href="weather.html" class="service-btn">🌤 Weather Forecast</a>
+
+<a href="ask_expert.html" class="service-btn">💬 Ask Expert</a>
+
+<a href="mandi.html" class="service-btn">💰 Mandi Prices</a>
+
+<a href="crop_recommendation.html" class="service-btn">🚜 Crop Recommendation</a>
+
+</div>
+</div>
+
+<div class="updates">
+<h2>📢 Latest Updates</h2>
+<ul>
+<li>New farming schemes announced.</li>
+<li>Check today's mandi prices.</li>
+<li>Rain expected this week.</li>
+<li>New expert blogs uploaded.</li>
+</ul>
+</div>
+
+</div>
+
+<footer>
+© 2026 AgriConnect | Farmer Dashboard
+</footer>
+
+</body>
+</html>
